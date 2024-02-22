@@ -1,0 +1,53 @@
+on: [push]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'adopt'
+          java-version: '11'
+      - uses: DeLaGuardo/setup-clojure@master
+        with:
+          cli: '1.11.1.1435'
+      - uses: actions/cache@v3.3.2
+        with:
+          path: '~/.m2'
+          key: "${{ runner.os }}-maven-${{ hashFiles('deps.edn') }}"
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - run: clojure -M:cljfmt check
+      - run: clojure -M:clj-kondo
+      - run: yarn install
+      - run: yarn test
+  deploy:
+    needs: test
+    if: github.ref == 'refs/heads/master'
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v4.1.1
+      - uses: actions/setup-java@v4
+        with:
+          distribution: 'adopt'
+          java-version: '11'
+      - uses: DeLaGuardo/setup-clojure@master
+        with:
+          cli: '1.11.1.1435'
+      - uses: actions/cache@v3.3.2
+        with:
+          path: '~/.m2'
+          key: "${{ runner.os }}-maven-${{ hashFiles('deps.edn') }}"
+          restore-keys: |
+            ${{ runner.os }}-maven-
+      - name: Build artifacts
+        run: |
+          clojure -Stree
+          yarn install
+          yarn release
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4.5.0
+        with:
+          branch: gh-pages
+          folder: resources/public

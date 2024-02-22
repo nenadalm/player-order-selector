@@ -1,0 +1,9 @@
+/.cpcache/
+/.shadow-cljs/
+/target/
+/node_modules/
+/resources/public/js/
+/resources/public/css/
+/resources/public/worker.js
+/resources/public/manifest.json
+/resources/public/index.html
