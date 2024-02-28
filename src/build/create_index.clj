@@ -8,7 +8,7 @@
 <html lang=\"en-US\">
   <head>
     <meta charset=\"utf-8\">
-    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=0 \">
+    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1, user-scalable=0\">
     <meta name=\"theme-color\" content=\"#121212\">
     <meta name=\"app-version\" content=\"" (u/app-version) "\">
     <meta name=\"description\" content=\"Random player order selector.\">

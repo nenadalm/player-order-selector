@@ -1,7 +1,7 @@
 const relatedAppVersion = '1'; // prop:relatedAppVersion
 const urlsToCache = ["/", "index.html", "js/app.js", "css/styles.css", "img/icon.svg", "manifest.json"]; // prop:urlsToCache
 
-const cacheKeyPrefix = 'nenadalm.backgammon.';
+const cacheKeyPrefix = 'nenadalm.player-order-selector.';
 const cacheKey = `${cacheKeyPrefix}resources.${relatedAppVersion}`;
 
 function ensureHtmlVersionMatches(cache) {
