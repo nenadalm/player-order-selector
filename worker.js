@@ -1,7 +1,7 @@
-const relatedAppVersion = "c6a49f8b3724db754a87ba6d86557c6988171c1b";
+const relatedAppVersion = "1f372c07a6e7e5a98ad434af6a5f81db3eb9a53b";
 const urlsToCache = ["index.html","manifest.json","img/icon.svg","js/app.8CE1C1A56B11B44EB8C186D06333446B.js","css/styles.45e18180c0bc8737a4bef08bdedb1211cc2eb2df.css"];
 
-const cacheKeyPrefix = 'nenadalm.backgammon.';
+const cacheKeyPrefix = 'nenadalm.player-order-selector.';
 const cacheKey = `${cacheKeyPrefix}resources.${relatedAppVersion}`;
 
 function ensureHtmlVersionMatches(cache) {
