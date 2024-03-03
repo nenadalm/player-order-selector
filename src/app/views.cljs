@@ -48,6 +48,11 @@
   (when @(re-frame/subscribe [::subs/show-help])
     [:div.help "All players should tap and hold to decide order."]))
 
+(defn footer []
+  (let [app-info @(re-frame/subscribe [::subs/app-info])]
+    [:div.footer
+     (str "Version: " (:version app-info))]))
+
 (defn game []
   [:div.game {:on-touchStart (fn [^js e]
                                (re-frame/dispatch [::events/update-touches (e->touches e) true]))
@@ -60,7 +65,8 @@
    [touches]
    [countdown]
    [reset-btn]
-   [help]])
+   [help]
+   [footer]])
 
 (defn app []
   [game])

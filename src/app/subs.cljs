@@ -23,3 +23,8 @@
    (let [game (:game db)]
      (and (= :deciding (:state game))
           (not (:decide-at game))))))
+
+(re-frame/reg-sub
+ ::app-info
+ (fn [db _]
+   (:app-info db)))

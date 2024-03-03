@@ -56,3 +56,9 @@ body {
     color: var(--text-color);
     pointer-events: none;
 }
+
+.footer {
+    color: var(--text-medium-color);
+    position: absolute;
+    bottom: 0;
+}
