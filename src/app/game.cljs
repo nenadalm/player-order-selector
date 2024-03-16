@@ -26,6 +26,17 @@
 (defn- stop [^js state]
   (set! (.-running state) false))
 
+(defn resize [^js state]
+  (let [canvas (.-canvas state)
+        context (.-context state)
+        dpr (.-devicePixelRatio js/window)]
+    (set! (.-width canvas) (* dpr (.-clientWidth canvas)))
+    (set! (.-height canvas) (* dpr (.-clientHeight canvas)))
+    (.scale context dpr dpr)
+    (set! (.-width state) (.-clientWidth canvas))
+    (set! (.-height state) (.-clientHeight canvas))
+    (start state)))
+
 (defn init-game [canvas]
   (let [push-event (fn [event]
                      (start game-state)
@@ -37,7 +48,6 @@
       #js {:width 0
            :height 0
            :prev-time (js/window.performance.now)
-           :running true
 
            :state "deciding" ;; "deciding" | "decided"
            :touches #js {}
@@ -45,7 +55,8 @@
            :ui #js []}
       game-state
       #js {:canvas canvas
-           :context context}))
+           :context context
+           :running true}))
     (.addEventListener
      canvas
      "touchstart"
@@ -91,7 +102,6 @@
   (set! (.-touches state) #js {}))
 
 (defn update-game [^js state _delta]
-  (js/console.log (.-canvas.dataset.inst state))
   (let [deciding (= "deciding" (.-state state))]
     (doseq [event (.-events state)]
       (case (first event)
@@ -276,3 +286,6 @@
      (fn [^js ui]
        (.beginPath context)
        (. (.-render ui) call ui state)))))
+
+(defn set-update-available []
+  (set! (.-update-available game-state) true))

@@ -19,7 +19,12 @@
     <link rel=\"manifest\" href=\"" (u/asset "manifest.json" module-id->output-name) "\">
   </head>
   <body>
-    <div id=\"app\"></div>
+    <div id=\"app\">
+      <div class=\"game\">
+        <canvas tabindex=\"1\">Your browser doesn't support canvas.</canvas>
+        <div class=\"footer\">Version: " (u/app-version) "</div>
+      </div>
+    </div>
     <script src=\"" (u/asset "js/app.js" module-id->output-name) "\"></script>
     <script>app.core.init();</script>
   </body>
