@@ -1,4 +1,4 @@
-const relatedAppVersion = "7299438db949f3d5f8eea9f68c56557eddfa6d85";
+const relatedAppVersion = "981156ffcfdecfa3c00d5220b062785f8026c1d4";
 const urlsToCache = ["index.html","manifest.json","img/icon.svg","js/app.3D19788E8472F585F281E70CBFC2A5A5.js","css/styles.9e07ab2ff6ce8fe07d6c225c15edf6a9bb7c8704.css"];
 
 const cacheKeyPrefix = 'nenadalm.player-order-selector.';
