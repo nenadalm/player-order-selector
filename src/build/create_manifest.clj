@@ -7,6 +7,7 @@
   (j/write-value-as-string
    {:name "Player order selector"
     :description "Random player order selector."
+    :categories ["utilities"]
     :icons [{:src (u/asset "img/icon.svg" module-id->output-name)
              :sizes "any"
              :type "image/svg+xml"}
