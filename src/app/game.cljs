@@ -83,7 +83,7 @@
      #js {:passive true})))
 
 (defn- schedule [^js state]
-  (set! (.-decide-at state) (+ 3000 (.-current-time state))))
+  (set! (.-decide-at state) (+ 2000 (.-current-time state))))
 
 (defn- unschedule [^js state]
   (js-delete state "decide_at"))
