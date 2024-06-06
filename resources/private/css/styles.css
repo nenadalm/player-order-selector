@@ -32,4 +32,9 @@ canvas {
     color: var(--text-medium-color);
     position: absolute;
     bottom: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    text-align: center;
+    white-space: nowrap;
+    width: 100%;
 }
