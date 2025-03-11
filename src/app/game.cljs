@@ -47,6 +47,7 @@
      (js/Object.assign
       #js {:width 0
            :height 0
+           :rem (js/parseInt (.-fontSize (js/getComputedStyle js/document.documentElement)) 10)
            :prev-time (js/window.performance.now)
 
            :state "deciding" ;; "deciding" | "decided"
@@ -177,7 +178,7 @@
                              :state "normal" ;; "normal" | "active"
                              :x 0
                              :y 0
-                             :r 40
+                             :r (* 2.5 (.-rem state))
                              :intersects (fn [x y]
                                            (this-as
                                             this
@@ -228,11 +229,19 @@
 
   state)
 
-(defn- ->touch [touch]
-  (let [r (+ (js/Math.max
-              (.-radiusX touch)
-              (.-radiusY touch))
-             30)]
+(defn- ->touch [touch rem]
+  (let [r (js/Math.min
+           (* rem 4) ;; fix too big circles due to incorrect radius values in firefox (https://bugzilla.mozilla.org/show_bug.cgi?id=1364969)
+           (js/Math.max
+
+            ;; computed size
+            (+ (js/Math.max
+                (.-radiusX touch)
+                (.-radiusY touch))
+               (* rem 1.87))
+
+            ;; minimum size so that number is inside circle
+            (* rem 1.5)))]
 
     #js {:x (- (.-pageX touch) r)
          :y (- (.-pageY touch) r)
@@ -251,7 +260,7 @@
     (.forEach
      (js/Object.values (.-touches state))
      (fn [touch*]
-       (let [touch (->touch touch*)
+       (let [touch (->touch touch* (.-rem state))
              x (+ (.-x touch) (.-r touch))
              y (+ (.-y touch) (.-r touch))]
          (.beginPath context)
