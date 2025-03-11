@@ -1,5 +1,5 @@
-const relatedAppVersion = "cf1194883bcf38b731c9647d85943bddfc87e7e4";
-const urlsToCache = ["index.html","manifest.json","img/icon.svg","js/app.14B1143B8C1DAA8F488AF96B56590174.js","css/styles.3af554bac85df61e4e4b288fb7834f659d50dee4.css"];
+const relatedAppVersion = "8ca1fb12056150651ce4fb4025329101f1fedcee";
+const urlsToCache = ["index.html","manifest.json","img/icon.svg","js/app.28A32C1886D50FB384CB321EF18F49BD.js","css/styles.3af554bac85df61e4e4b288fb7834f659d50dee4.css"];
 
 const cacheKeyPrefix = 'nenadalm.player-order-selector.';
 const cacheKey = `${cacheKeyPrefix}resources.${relatedAppVersion}`;
