@@ -230,19 +230,7 @@
   state)
 
 (defn- ->touch [touch rem]
-  (let [r (js/Math.min
-           (* rem 4) ;; fix too big circles due to incorrect radius values in firefox (https://bugzilla.mozilla.org/show_bug.cgi?id=1364969)
-           (js/Math.max
-
-            ;; computed size
-            (+ (js/Math.max
-                (.-radiusX touch)
-                (.-radiusY touch))
-               (* rem 1.87))
-
-            ;; minimum size so that number is inside circle
-            (* rem 1.5)))]
-
+  (let [r (* rem 4)]
     #js {:x (- (.-pageX touch) r)
          :y (- (.-pageY touch) r)
          :r r}))
